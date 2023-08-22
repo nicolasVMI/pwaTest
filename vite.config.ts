@@ -7,8 +7,7 @@ import { VitePWA } from "vite-plugin-pwa"
 export default defineConfig({
   plugins: [
     react(),
-    glsl(),
-    basicSsl()
+    glsl()
   ],
   root: "./src",
   publicDir: "../public/",
