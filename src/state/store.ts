@@ -13,8 +13,8 @@ interface InitialState {
 export const useStore = create<InitialState>()((set, get) => ({
   isOculus: /(OculusBrowser)/i.test(window.navigator.userAgent),
   //@ts-ignore
-  // socket: io("https://api-gateway.vmiservers.com/socket"),
-  socket: null,
+  socket: io("https://api-gateway.vmiservers.com/socket"),
+  // socket: null,
   worldInfo: null,
   setWorldInfo: v => set({ worldInfo: v }),
   currentTour: 0,

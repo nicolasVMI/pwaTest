@@ -63,10 +63,10 @@ function XRTabletController() {
               key={i}
               onClick={() => {
                 setCurrentTour(i);
-                // socket.emit("test", {
-                //   type: "texture",
-                //   count: i,
-                // });
+                socket.emit("test", {
+                  type: "texture",
+                  count: i,
+                });
                 
               }}
               onDoubleClick={() => { 
