@@ -1,18 +1,40 @@
 {
-  "name": "socket-server",
+  "name": "hilight",
+  "private": true,
   "version": "0.1.0",
-  "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "vite --host",
+    "build": "tsc && vite build"
   },
-  "repository": "https://nicomarvar@bitbucket.org/nicomarvar/sockets-back.git",
-  "author": "Nicolas Martinez <nicolas@vmistudio.com>",
-  "license": "MIT",
+  "devDependencies": {
+    "@react-spring/types": "^9.7.1",
+    "@types/react": "^18.0.27",
+    "@types/react-dom": "^18.0.10",
+    "@types/react-router-dom": "^5.3.3",
+    "@types/styled-components": "^5.1.26",
+    "@types/three": "^0.149.0",
+    "@vitejs/plugin-basic-ssl": "^1.0.1",
+    "@vitejs/plugin-react": "3.0",
+    "typescript": "^4.6.4",
+    "vite": "^4.0.4",
+    "vite-plugin-pwa": "^0.16.4"
+  },
   "dependencies": {
-    "cors": "^2.8.5",
-    "express": "^4.18.1",
-    "nodemon": "^2.0.16",
-    "socket.io": "^4.5.1"
+    "@react-spring/core": "^9.7.1",
+    "@react-spring/three": "^9.7.1",
+    "@react-spring/web": "^9.7.1",
+    "@react-three/drei": "^9.50.3",
+    "@react-three/fiber": "^8.12.0",
+    "@react-three/xr": "^5.6.2",
+    "@tweenjs/tween.js": "^18.6.4",
+    "react": "18.2",
+    "react-dom": "18.2",
+    "react-router-dom": "^6.8.0",
+    "socket.io-client": "^4.7.2",
+    "styled-components": "^5.3.6",
+    "three": "^0.148.0",
+    "vite-plugin-glsl": "^1.1.0",
+    "zustand": "^4.3.2"
   }
 }
