@@ -31,7 +31,7 @@ let server
 // } else {
    server = http.createServer(app)
 // }
-const PORT = 8080 // process.env.PORT || 8080;
+const PORT = process.env.PORT || 8080;
 server.listen(PORT, () => {
    console.log("PROTOCOL", process.env.NODE_ENV)
 })
