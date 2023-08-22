@@ -14,7 +14,7 @@ function Landing() {
   const isOculus = useStore((s) => s.isOculus);
 
   useEffect(() => {
-    socket && socket.on("receive-test", (data) => {
+    socket.on("receive-test", (data) => {
       if (data.type === "texture") {
         setCurrentTour(data.count);
         return
