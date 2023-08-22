@@ -7,17 +7,7 @@ import { VitePWA } from "vite-plugin-pwa"
 export default defineConfig({
   plugins: [
     react(),
-    glsl(),basicSsl()
-    // VitePWA({
-    //   registerType: "autoUpdate",
-    //   injectRegister: "auto",
-    //   workbox: {
-    //     globPatterns: ['**/*.{js,css,html,ico,png,svg,jpg}']
-    //   },
-    //   devOptions: {
-    //     enabled: true,
-    //   },
-    // }),
+    glsl()
   ],
   root: "./src",
   publicDir: "../public/",
@@ -44,5 +34,12 @@ export default defineConfig({
     outDir: "../build",
     emptyOutDir: true,
     sourcemap: true,
+    rollupOptions: {
+      output: {
+        entryFileNames: 'plugin.js',
+        assetFileNames: 'plugin.css',
+        chunkFileNames: "chunk.js",
+      }
+    }
   },
 })

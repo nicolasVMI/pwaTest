@@ -1,18 +1,23 @@
 const cacheName = "landsecXR-v1"
 
 const coreFiles = [
-  "/serviceworker.js",
+  "/",
   "/index.html",
-  "/style.css",
-  "/index.tsx",
+  "/serviceworker.js",
+  "/manifest.json",
+  "/plugin.css",
+  "/plugin.js",
+  "/plugin.js.map",
+  "/icon.ico",
+  "/192.png",
+  "/512.png",
   "/textures/bogota.jpg",
   "/textures/hoboken/hudson.jpg",
   "/textures/hoboken/plaza.jpg",
   "/textures/hoboken/terrace.jpg",
   "/textures/lesbordes/bedroom.jpg",
   "/textures/lesbordes/living.jpg",
-  "/textures/lesbordes/master.jpg",
-  "/icon.ico",
+  "/textures/lesbordes/master.jpg"
 ]
 
 self.addEventListener("install", e => {
