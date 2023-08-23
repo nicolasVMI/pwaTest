@@ -5,9 +5,9 @@ const coreFiles = [
   "/index.html",
   "/serviceworker.js",
   "/manifest.json",
-  // "/plugin.css",
-  // "/plugin.js",
-  // "/plugin.js.map",
+  "/plugin.css",
+  "/plugin.js",
+  "/plugin.js.map",
   "/icon.ico",
   "/192.png",
   "/512.png",
@@ -28,19 +28,19 @@ self.addEventListener("install", e => {
 
 self.addEventListener("active", e => {
   // console.log("Active Event >>> ", e)
-  if ("xr" in navigator) {
-    const XRAPI = navigator.xr
-    const sessionInit = {
-      optionalFeatures: [
-        "local-floor",
-        "bounded-floor",
-        "hand-tracking",
-        "layers"
-      ]
-    }
-    window.session = XRAPI.requestSession("immersive-ar", sessionInit)
-    console.log(window.session)
-  }
+  // if ("xr" in navigator) {
+  //   const XRAPI = navigator.xr
+  //   const sessionInit = {
+  //     optionalFeatures: [
+  //       "local-floor",
+  //       "bounded-floor",
+  //       "hand-tracking",
+  //       "layers"
+  //     ]
+  //   }
+  //   window.session = XRAPI.requestSession("immersive-ar", sessionInit)
+  //   console.log(window.session)
+  // }
 })
 
 self.addEventListener('fetch', (e) => {
