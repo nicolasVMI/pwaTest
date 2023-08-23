@@ -6,6 +6,7 @@ import { useStore } from "@state/store"
 import Transition360 from "@components/Transition360/Transition360"
 import SphericalTour from "@components/SphericalTour/SphericalTour"
 import SphereManager from "@components/SphereManager/SphereManager"
+import GetWorldInfo from "@components/GetWorldInfo/GetWorldInfo"
 
 function XRTabletController() {
   const worldInfo = useStore((s) => s.worldInfo)
@@ -55,6 +56,7 @@ function XRTabletController() {
     <TabletWrapper>
       <Suspense fallback={null}>
         <Canvas>
+          <GetWorldInfo />
           <SphereManager />
         </Canvas>
       </Suspense>
