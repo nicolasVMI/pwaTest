@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import { useStore } from "@state/store";
 import Transition360 from "@components/Transition360/Transition360";
+import SphericalTour from "@components/SphericalTour/SphericalTour";
 
 function XRTabletController() {
   const worldInfo = useStore(s => s.worldInfo)
@@ -27,11 +28,8 @@ function XRTabletController() {
         XRSession.current = session
         // XRSession.current.onselectstart = logEvent
         XRSession.current.onselect = () => XRSession.current.end()
-        // XRSession.current.onselectend = logEvent
         XRSession.current.onend = () => {       }
         renderer.current.xr.setSession(XRSession.current)
-        //  console.log(renderer.xr)
-        //  console.log(XRSession.current)
      })
   }
 
@@ -67,7 +65,6 @@ function XRTabletController() {
                   type: "texture",
                   count: i,
                 });
-                
               }}
               onDoubleClick={() => { 
                 setTimeout(() => {

@@ -10,6 +10,7 @@ function Sphere({
   blend,
   shaderRef
 }) {
+
    return (
       <mesh
          scale={[-1, 1, 1]}

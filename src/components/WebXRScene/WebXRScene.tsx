@@ -38,6 +38,8 @@ function WebXRScene({ children }) {
    useEffect(() => {
       if (worldInfo) {
          renderer.current = worldInfo.gl
+         //@ts-ignore
+         renderer.current.xr.setSession(window.session)
       }
    }, [worldInfo])
    return (
@@ -46,19 +48,6 @@ function WebXRScene({ children }) {
             <XR>
                {children}
                <Hands />
-               {/* <GetInfo />
-             <SphericalTour
-                texture={"/textures/plaza.jpg"}
-                initialPos={test ? [0, 0, 0] : [1000, 0, 0]}
-             />
-             <SphericalTour
-                texture={"/textures/terrace.jpg"}
-                initialPos={test ? [-1000, 0, 0] : [0, 0, 0]}
-             />
-             <SphericalTour
-                texture={"/textures/hudson.jpg"}
-                initialPos={test ? [-1000, 0, 0] : [0, 0, 0]}
-             /> */}
             </XR>
          </Canvas>
       </Fragment>

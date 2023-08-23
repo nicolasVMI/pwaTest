@@ -15,7 +15,20 @@
         })
       }
       if ("xr" in navigator) {
-        // WebXR is supported, you can proceed
+        const XRAPI = navigator.xr
+        const sessionInit = {
+          optionalFeatures: [
+            "local-floor",
+            "bounded-floor",
+            "hand-tracking",
+            "layers"
+          ]
+        }
+        XRAPI.requestSession("immersive-ar", sessionInit).then( session => {
+          window.session = session
+          window.session.onselect = () => XRSession.current.end()
+          window.session.onend = window.session = null
+        })
       }
     </script>
   </head>

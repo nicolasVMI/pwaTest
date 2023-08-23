@@ -14,7 +14,7 @@ function CameraControls() {
          args={[camera, domElement]}
          enableZoom={false}
          autoRotate={false}
-         rotateSpeed={-0.30}/>
+         rotateSpeed={0.30}/>
    </React.Fragment>
   )
 }

@@ -12,9 +12,9 @@ function Landing() {
   const setCurrentTour = useStore((s) => s.setCurrentTour);
   const socket = useStore((s) => s.socket);
   const isOculus = useStore((s) => s.isOculus);
-
+  
   useEffect(() => {
-    socket.on("receive-test", (data) => {
+    socket && socket.on("receive-test", (data) => {
       if (data.type === "texture") {
         setCurrentTour(data.count);
         return
@@ -29,7 +29,7 @@ function Landing() {
         <GetWorldInfo />
         <SphereManager />
       </WebXRScene>
-      <XRButton />
+      {/* <XRButton /> */}
     </Wrapper>
   ) : (
     <XRTabletController />

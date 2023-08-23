@@ -5,12 +5,13 @@ const coreFiles = [
   "/index.html",
   "/serviceworker.js",
   "/manifest.json",
-  "/plugin.css",
-  "/plugin.js",
-  "/plugin.js.map",
+  // "/plugin.css",
+  // "/plugin.js",
+  // "/plugin.js.map",
   "/icon.ico",
   "/192.png",
   "/512.png",
+  "/videos/test.mp4",
   "/textures/bogota.jpg",
   "/textures/hoboken/hudson.jpg",
   "/textures/hoboken/plaza.jpg",
@@ -21,16 +22,29 @@ const coreFiles = [
 ]
 
 self.addEventListener("install", e => {
-  console.log("Install Event >>> ", e)
+  // console.log("Install Event >>> ", e)
   e.waitUntil(caches.open(cacheName).then((cache) => cache.addAll(coreFiles)));
 })
 
 self.addEventListener("active", e => {
-  console.log("Active Event >>> ", e)
+  // console.log("Active Event >>> ", e)
+  if ("xr" in navigator) {
+    const XRAPI = navigator.xr
+    const sessionInit = {
+      optionalFeatures: [
+        "local-floor",
+        "bounded-floor",
+        "hand-tracking",
+        "layers"
+      ]
+    }
+    window.session = XRAPI.requestSession("immersive-ar", sessionInit)
+    console.log(window.session)
+  }
 })
 
 self.addEventListener('fetch', (e) => {
-  console.log('Fetch Event', e.request.url);
+  // console.log('Fetch Event', e);
   e.respondWith(
     caches.match(e.request).then((cachedResponse) => {
       if (cachedResponse) {

@@ -1,14 +1,14 @@
-import { Fragment } from "react";
-import { useSpring } from "@react-spring/core";
-import { a } from "@react-spring/three";
-import { useLoader } from "@react-three/fiber";
-import * as THREE from "three";
+import { Fragment } from "react"
+import { useSpring } from "@react-spring/core"
+import { a } from "@react-spring/three"
+import { useLoader } from "@react-three/fiber"
+import * as THREE from "three"
 
-import { useStore } from "@state/store";
-import CameraControls from "@components/SphericalTour/components/CameraControls";
+import { useStore } from "@state/store"
+import CameraControls from "@components/SphericalTour/components/CameraControls"
 
 function SphereManager() {
-  const currentTour = useStore(s => s.currentTour)
+  const currentTour = useStore((s) => s.currentTour)
   const textures = [
     "/textures/bogota.jpg",
     "/textures/hoboken/hudson.jpg",
@@ -17,24 +17,34 @@ function SphereManager() {
     "/textures/lesbordes/living.jpg",
     "/textures/lesbordes/bedroom.jpg",
     "/textures/lesbordes/master.jpg",
-  ].map((path) => useLoader(THREE.TextureLoader, path)as THREE.Texture);
+  ].map((path) => useLoader(THREE.TextureLoader, path) as THREE.Texture)
 
   textures.forEach((texture) => {
-    texture.minFilter = THREE.LinearFilter;
-    texture.wrapS = THREE.RepeatWrapping;
-    texture.repeat.x = 1;
+    texture.minFilter = THREE.LinearFilter
+    texture.wrapS = THREE.RepeatWrapping
+    texture.repeat.x = 1
     //@ts-ignore
-    texture.flipX = true;
-  });
+    texture.flipX = true
+  })
 
- const getSprings = () => {
-  let obj = {}
-  for(let i = 0; i < textures.length ; i++){
-    obj[i] = useSpring({opacity: i === currentTour ? 1 : 0})
+  const getSprings = () => {
+    let obj = {}
+    for (let i = 0; i < textures.length; i++) {
+      obj[i] = useSpring({ opacity: i === currentTour ? 1 : 0 })
+    }
+    return obj
   }
-  return obj
- }
-const springs = getSprings()
+  const springs = getSprings()
+  let videoTexture
+
+  const video = document.createElement("video")
+  video.src = "/videos/test.mp4"
+  video.loop = true
+  video.crossOrigin = "anonymous"
+  video.playsInline = true
+  video.muted = true
+  video.play()
+  videoTexture = new THREE.VideoTexture(video)
   return (
     <Fragment>
       <CameraControls />
@@ -60,7 +70,7 @@ const springs = getSprings()
         })
       }
     </Fragment>
-  );
+  )
 }
 
-export default SphereManager;
+export default SphereManager
