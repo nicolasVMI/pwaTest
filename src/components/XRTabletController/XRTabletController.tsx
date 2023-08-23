@@ -1,36 +1,38 @@
-import { Suspense, useEffect, useRef } from "react";
-import styled from "styled-components";
+import { Suspense, useEffect, useRef } from "react"
+import styled from "styled-components"
+import { Canvas } from "@react-three/fiber"
 
-import { useStore } from "@state/store";
-import Transition360 from "@components/Transition360/Transition360";
-import SphericalTour from "@components/SphericalTour/SphericalTour";
+import { useStore } from "@state/store"
+import Transition360 from "@components/Transition360/Transition360"
+import SphericalTour from "@components/SphericalTour/SphericalTour"
+import SphereManager from "@components/SphereManager/SphereManager"
 
 function XRTabletController() {
-  const worldInfo = useStore(s => s.worldInfo)
-  const currentTour = useStore((s) => s.currentTour);
-  const setCurrentTour = useStore((s) => s.setCurrentTour);
-  const socket = useStore((s) => s.socket);
+  const worldInfo = useStore((s) => s.worldInfo)
+  const currentTour = useStore((s) => s.currentTour)
+  const setCurrentTour = useStore((s) => s.setCurrentTour)
+  const socket = useStore((s) => s.socket)
   const renderer = useRef<any>(null)
   const XRSession = useRef<XRSession | null>(null)
 
   const XRAPI = navigator.xr
 
   function handleSessionRequest() {
-     const sessionInit = {
-        optionalFeatures: [
-           "local-floor",
-           "bounded-floor",
-           "hand-tracking",
-           "layers"
-        ]
-     }
-     XRAPI.requestSession("immersive-ar", sessionInit).then(session => {
-        XRSession.current = session
-        // XRSession.current.onselectstart = logEvent
-        XRSession.current.onselect = () => XRSession.current.end()
-        XRSession.current.onend = () => {       }
-        renderer.current.xr.setSession(XRSession.current)
-     })
+    const sessionInit = {
+      optionalFeatures: [
+        "local-floor",
+        "bounded-floor",
+        "hand-tracking",
+        "layers",
+      ],
+    }
+    XRAPI.requestSession("immersive-ar", sessionInit).then((session) => {
+      XRSession.current = session
+      // XRSession.current.onselectstart = logEvent
+      XRSession.current.onselect = () => XRSession.current.end()
+      XRSession.current.onend = () => {}
+      renderer.current.xr.setSession(XRSession.current)
+    })
   }
 
   const array = [
@@ -41,10 +43,10 @@ function XRTabletController() {
     "/textures/lesbordes/living.jpg",
     "/textures/lesbordes/bedroom.jpg",
     "/textures/lesbordes/master.jpg",
-  ];
+  ]
 
   useEffect(() => {
-    if(worldInfo){
+    if (worldInfo) {
       renderer.current = worldInfo.gl
     }
   }, [worldInfo])
@@ -52,42 +54,44 @@ function XRTabletController() {
   return (
     <TabletWrapper>
       <Suspense fallback={null}>
-        <Transition360 />
+        <Canvas>
+          <SphereManager />
+        </Canvas>
       </Suspense>
       <Div>
-        {array.map((n, i) => {
+        {array.map((src, i) => {
           return (
             <div
               key={i}
               onClick={() => {
-                setCurrentTour(i);
+                setCurrentTour(i)
                 socket.emit("test", {
                   type: "texture",
                   count: i,
-                });
+                })
               }}
-              onDoubleClick={() => { 
+              onDoubleClick={() => {
                 setTimeout(() => {
                   handleSessionRequest()
                 }, 1000)
               }}
-              >
-              <img alt="" src={n} />
+            >
+              <img alt="" src={src} />
             </div>
-          );
+          )
         })}
       </Div>
     </TabletWrapper>
-  );
+  )
 }
 
-export default XRTabletController;
+export default XRTabletController
 
 const TabletWrapper = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
-`;
+`
 
 const Div = styled.div`
   position: absolute;
@@ -104,7 +108,7 @@ const Div = styled.div`
   flex-wrap: wrap;
   gap: 5px;
   pointer-events: none;
-  
+
   & div {
     border: 1px solid white;
     height: 30%;
@@ -115,11 +119,12 @@ const Div = styled.div`
     cursor: pointer;
     pointer-events: all;
 
-    & img {
+    & img,
+    video {
       display: block;
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
   }
-`;
+`

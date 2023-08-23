@@ -22,7 +22,7 @@ function SphereManager() {
   textures.forEach((texture) => {
     texture.minFilter = THREE.LinearFilter
     texture.wrapS = THREE.RepeatWrapping
-    texture.repeat.x = 1
+    texture.repeat.x = -1
     //@ts-ignore
     texture.flipX = true
   })
@@ -35,16 +35,7 @@ function SphereManager() {
     return obj
   }
   const springs = getSprings()
-  let videoTexture
 
-  const video = document.createElement("video")
-  video.src = "/videos/test.mp4"
-  video.loop = true
-  video.crossOrigin = "anonymous"
-  video.playsInline = true
-  video.muted = true
-  video.play()
-  videoTexture = new THREE.VideoTexture(video)
   return (
     <Fragment>
       <CameraControls />

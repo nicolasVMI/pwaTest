@@ -32,8 +32,6 @@ function WebXRScene({ children }) {
   useEffect(() => {
     if (worldInfo) {
       renderer.current = worldInfo.gl
-      //@ts-ignore
-      renderer.current.xr.setSession(window.session)
     }
   }, [worldInfo])
   return (
