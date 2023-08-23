@@ -8,7 +8,7 @@ export default defineConfig({
   plugins: [
     react(),
     glsl(),
-    // basicSsl()
+    basicSsl()
   ],
   root: "./src",
   publicDir: "../public/",

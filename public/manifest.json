@@ -26,9 +26,14 @@
     }
   ],
   "start_url": ".",
+  "display_override": ["window-controls-overlay"],
   "display": "fullscreen",
   "orientation": "landscape",
   "theme_color": "#000000",
   "background_color": "#ffffff",
-  "prefer_related_applications": false
+  "prefer_related_applications": false,
+  "description": "Landsec's portfolio tours in London's southbank",
+  "launch_handler": {
+    "client_mode": "focus-existing"
+  }
 }

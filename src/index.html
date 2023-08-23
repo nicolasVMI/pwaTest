@@ -14,20 +14,29 @@
           await navigator.serviceWorker.register("/serviceworker.js")
         })
       }
-      if ("xr" in navigator) {
-        const XRAPI = navigator.xr
-        const sessionInit = {
-          optionalFeatures: [
-            "local-floor",
-            "bounded-floor",
-            "hand-tracking",
-            "layers"
-          ]
-        }
-        XRAPI.requestSession("immersive-ar", sessionInit).then( session => {
-          window.session = session
-          window.session.onselect = () => XRSession.current.end()
-          window.session.onend = window.session = null
+      if (
+        "launchQueue" in window &&
+        /(OculusBrowser)/i.test(window.navigator.userAgent)
+      ) {
+        window.launchQueue.setConsumer((launchParams) => {
+          if ("xr" in navigator) {
+            const XRAPI = navigator.xr
+            const sessionInit = {
+              optionalFeatures: [
+                "local-floor",
+                "bounded-floor",
+                "hand-tracking",
+                "layers",
+              ],
+            }
+            XRAPI.requestSession("immersive-ar", sessionInit).then(
+              (session) => {
+                window.session = session
+                window.session.onselect = () => XRSession.current.end()
+                window.session.onend = window.session = null
+              }
+            )
+          }
         })
       }
     </script>
