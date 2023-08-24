@@ -21,8 +21,6 @@ function Landing() {
       }
     });
   }, [socket]);
-
-
   return isOculus ? (
     <Wrapper>
       <WebXRScene>

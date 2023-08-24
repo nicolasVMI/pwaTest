@@ -10,13 +10,14 @@ import CameraControls from "@components/SphericalTour/components/CameraControls"
 function SphereManager() {
   const currentTour = useStore((s) => s.currentTour)
   const textures = [
-    "/textures/bogota.jpg",
-    "/textures/hoboken/hudson.jpg",
-    "/textures/hoboken/plaza.jpg",
-    "/textures/hoboken/terrace.jpg",
-    "/textures/lesbordes/living.jpg",
-    "/textures/lesbordes/bedroom.jpg",
-    "/textures/lesbordes/master.jpg",
+    "/textures/landsec/1.webp",
+    "/textures/landsec/2.webp",
+    "/textures/landsec/3.webp",
+    "/textures/landsec/4.webp",
+    "/textures/landsec/5.webp",
+    "/textures/landsec/6.webp",
+    "/textures/landsec/7.webp",
+    "/textures/landsec/8.webp",
   ].map((path) => useLoader(THREE.TextureLoader, path) as THREE.Texture)
 
   textures.forEach((texture) => {
@@ -39,27 +40,21 @@ function SphereManager() {
   return (
     <Fragment>
       <CameraControls />
-      {
-        textures.map((texture, i) => {
-          return (
-            <mesh
-              key={i}
-              position={[0,0,0]}
-              rotation={[0,0,0]}
-            >
-              <sphereGeometry args={[500, 60, 40]} />
-              {/* @ts-ignore */}
-              <a.meshBasicMaterial
-                toneMapped={false}
-                map={texture}
-                side={THREE.DoubleSide}
-                transparent
-                opacity={springs[i].opacity}
-              />
-            </mesh>
-          )
-        })
-      }
+      {textures.map((texture, i) => {
+        return (
+          <mesh key={i} position={[0, 0, 0]} rotation={[0, 0, 0]}>
+            <sphereGeometry args={[500, 60, 40]} />
+            {/* @ts-ignore */}
+            <a.meshBasicMaterial
+              toneMapped={false}
+              map={texture}
+              side={THREE.DoubleSide}
+              transparent
+              opacity={springs[i].opacity}
+            />
+          </mesh>
+        )
+      })}
     </Fragment>
   )
 }

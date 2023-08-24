@@ -7,7 +7,9 @@ interface InitialState {
   worldInfo: any
   setWorldInfo: (v: any) => void
   currentTour: number
-  setCurrentTour: (v: any) => void
+  setCurrentTour: (v: number) => void
+  isOnline: boolean | null
+  setIsOnline: (v: boolean | null) => void
 }
 
 export const useStore = create<InitialState>()((set, get) => ({
@@ -19,4 +21,6 @@ export const useStore = create<InitialState>()((set, get) => ({
   setWorldInfo: v => set({ worldInfo: v }),
   currentTour: 0,
   setCurrentTour: v => set({ currentTour: v }),
+  isOnline: null,
+  setIsOnline: v => set({ isOnline: v })
 }))

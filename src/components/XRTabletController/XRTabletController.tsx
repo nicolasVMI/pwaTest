@@ -37,13 +37,14 @@ function XRTabletController() {
   }
 
   const array = [
-    "/textures/bogota.jpg",
-    "/textures/hoboken/hudson.jpg",
-    "/textures/hoboken/plaza.jpg",
-    "/textures/hoboken/terrace.jpg",
-    "/textures/lesbordes/living.jpg",
-    "/textures/lesbordes/bedroom.jpg",
-    "/textures/lesbordes/master.jpg",
+    "/textures/landsec/mini/1.webp",
+    "/textures/landsec/mini/2.webp",
+    "/textures/landsec/mini/3.webp",
+    "/textures/landsec/mini/4.webp",
+    "/textures/landsec/mini/5.webp",
+    "/textures/landsec/mini/6.webp",
+    "/textures/landsec/mini/7.webp",
+    "/textures/landsec/mini/8.webp",
   ]
 
   useEffect(() => {
